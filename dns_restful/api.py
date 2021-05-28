@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 from flask_restful import Resource, Api, abort
 import functools
 
@@ -26,6 +26,11 @@ def check_token(func):
         return func(*args, **kwargs)
 
     return wrapper
+
+
+@app.route('/')
+def index():
+    return render_template('index.html')
 
 
 class ListDomainRecords(Resource):
